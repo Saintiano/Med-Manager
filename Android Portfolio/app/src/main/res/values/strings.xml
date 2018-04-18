@@ -1,0 +1,75 @@
+<resources>
+
+    <string name="app_name">Med Manager</string>
+
+    <string name="profile">Profile UI</string>
+
+    <string name="twitterUsername">\@saintiano</string>
+
+
+    <string name="med_manager">Med Manager</string>
+
+    //string name for database references
+    <string name="dbname_users">users</string>
+
+    <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="drug_informations">Drug Informations</string>
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="medications">Medications</string>
+    
+    <array name="days">
+
+        <item>Day One</item>
+        <item>Day Two</item>
+        <item>Day Three</item>
+        <item>Day Four</item>
+        <item>Day Five</item>
+        <item>Day Six</item>
+        <item>Day Seven</item>
+        <item>Day Eight</item>
+        <item>Day Nine</item>
+        <item>Day Ten</item>
+        <item>Day Eleven</item>
+        <item>Day Twelve</item>
+        <item>Day Thirteen</item>
+        <item>Day Fourteen</item>
+        <item>Day Fifteen</item>
+        <item>Day Sixteen</item>
+        <item>Day Seventeen</item>
+        <item>Day Eighteen</item>
+        <item>Day Nineteen</item>
+        <item>Day Twenty</item>
+        <item>Day Twenty One</item>
+        <item>Day Twenty Two</item>
+        <item>Day Twenty Three</item>
+        <item>Day Twenty Four</item>
+        <item>Day Twenty Five</item>
+        <item>Day Twenty Six</item>
+        <item>Day Twenty Seven</item>
+        <item>Day Twenty Eight</item>
+        <item>Day Twenty Nine</item>
+        <item>Day Thirty</item>
+        <item>Day Thirty One</item>
+
+    </array>
+
+
+    <array name="month">
+
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+
+    </array>
+
+</resources>

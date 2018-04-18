@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "187652058100",
+    "firebase_url": "https://clovis-saintiano.firebaseio.com",
+    "project_id": "clovis-saintiano",
+    "storage_bucket": "clovis-saintiano.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187652058100:android:1d3c66540cef44c9",
+        "android_client_info": {
+          "package_name": "com.example.saint.medmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187652058100-orjg9i7htgdttjhrdqo0msm43j80a6ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saint.medmanager",
+            "certificate_hash": "bc4b400d0614a4fe48105531ccd1097da5071844"
+          }
+        },
+        {
+          "client_id": "187652058100-ig4eut77aib1jlpqjo4b9p5slvsodttu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPRL83enM748Jn1GnhGMNwpPhU8UxOL6I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187652058100-ig4eut77aib1jlpqjo4b9p5slvsodttu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
