@@ -4,23 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medications Taken"
-        android:padding="20dp"
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_marginLeft="60dp"/>
+        android:id="@+id/show_medication_recyclerview">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/medication_listView">
 
-    </ListView>
 
+    </android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="50dp"
+                android:id="@+id/image_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/hospital"
+                            android:id="@+id/set_hospital_profile_photo"
+                            app:civ_border_color="@color/gray_light"
+                            android:layout_marginTop="10dp"
+                            app:civ_border_width="2dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/change_photo"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:text="Change Hospital Photo"
+                            android:layout_below="@id/profile_photo"
+                            android:textSize="10sp"
+                            android:textColor="@color/blue_primary"
+                            android:background="@drawable/grey_border_bottom"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/image_card"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="20dp"
+                android:id="@+id/hospital_name_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_primary"
+                        android:text="Hospital Information"/>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+
+
+                        //display Username
+                        <RelativeLayout
+                            android:layout_marginRight="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"                            android:layout_marginTop="20dp"
+                            android:background="@drawable/grey_border_bottom"
+                            android:id="@+id/rellayout1"
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/user_person"
+                                android:layout_centerVertical="true"
+                                />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/edit_hospital_username"
+                                android:layout_marginStart="40dp"
+                                android:background="@null"
+                                android:textSize="15sp"
+                                android:hint="Hospital Username"
+                                android:inputType="textNoSuggestions"/>
+
+                        </RelativeLayout>
+
+                        //display display name
+                        <RelativeLayout
+                            android:layout_marginRight="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"                            android:layout_below="@id/rellayout1"
+                            android:background="@drawable/grey_border_bottom"
+                            android:id="@+id/rellayout2"
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/hospital_1"
+                                android:layout_centerVertical="true"
+                                />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/edit_hospital_full_name"
+                                android:layout_marginStart="40dp"
+                                android:background="@null"
+                                android:textSize="15sp"
+                                android:hint="Hospital Name"
+                                android:inputType="textNoSuggestions"/>
+
+                        </RelativeLayout>
+
+                        //display Description
+                        <RelativeLayout
+                            android:layout_marginRight="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_below="@id/rellayout5"
+                            android:background="@drawable/grey_border_bottom"
+                            android:id="@+id/rellayout6"
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/medicine_briefcase"
+                                android:layout_centerVertical="true"
+                                />
+
+                            <EditText
+                                android:textSize="15sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/edit_doctor_work_description"
+                                android:layout_marginStart="40dp"
+                                android:background="@null"
+                                android:hint="Description"
+                                android:inputType="textNoSuggestions"/>
+
+                        </RelativeLayout>
+
+                        //display Genotype
+                        <RelativeLayout
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_below="@id/image_card"
+                            android:background="@drawable/grey_border_bottom"
+                            android:id="@+id/rellayout4"
+                            >
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/doctor_treatment"
+                                android:layout_centerVertical="true"
+                                />
+
+                            <EditText
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/edit_doctor_specialization"
+                                android:layout_marginStart="40dp"
+                                android:background="@null"
+                                android:textSize="15sp"
+                                android:hint="Specialization"
+                                android:inputType="textNoSuggestions"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@id/hospital_name_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="20dp"
+                android:id="@+id/details_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Medical Services and Contacts"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+
+
+                    //display Work
+
+                    <RelativeLayout
+                        android:id="@+id/rellayout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/image_card"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/grey_border_bottom">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_group_work_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_hospital_ambulance_services"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:hint="Do you offer Ambulance services?"
+                            android:inputType="textNoSuggestions"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+
+                    //display Blood Group
+
+                    <RelativeLayout
+                        android:id="@+id/rellayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/rellayout2"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/grey_border_bottom">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/map" />
+
+                        <EditText
+                            android:id="@+id/edit_hospital_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:hint="Hospital Address"
+                            android:inputType="textNoSuggestions"
+                            android:textSize="15sp" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/rellayout3"
+                        android:background="@drawable/grey_border_bottom"
+                        >
+
+
+                        <ImageView
+
+                            android:id="@+id/state_image"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/nigeria_map" />
+
+                        <TextView
+                            android:layout_toRightOf="@id/state_image"
+                            android:id="@+id/state_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="#918d8d"
+                            android:text="Select State"
+                            android:textSize="15sp" />
+
+                        <Spinner
+                            android:layout_toRightOf="@id/state_text"
+                            android:id="@+id/spinner_states"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:entries="@array/states">
+
+                        </Spinner>
+
+
+                    </RelativeLayout>
+
+
+                    //display Email
+
+                    <RelativeLayout
+                        android:id="@+id/rellayout7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/rellayout6"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/grey_border_bottom">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_email_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_hospital_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:hint="Email"
+                            android:inputType="textNoSuggestions"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    //display Mobile Number
+
+                    <RelativeLayout
+                        android:id="@+id/rellayout8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/rellayout7"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/grey_border_bottom">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_contact_phone_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_hospital_PhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:hint="Phone Number"
+                            android:inputType="textNoSuggestions"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/rellayout8"
+                        android:layout_marginTop="20dp">
+
+                        <Button
+                            android:id="@+id/create_doctor_profile_button"
+                            style="@style/Base.TextAppearance.AppCompat.Body1"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/save_profile_button"
+                            android:clickable="true"
+                            android:padding="10dp"
+                            android:text="Save"
+                            android:textAllCaps="false"
+                            android:textColor="#f4f4f4"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="300dp"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="100dp"
+                    android:id="@+id/progressBar_create_doctor_profile" />
+
+                <TextView
+                    android:id="@+id/please_wait_create_doctor_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Please Wait"
+                    android:textSize="15sp"
+                    android:layout_marginTop="12dp"
+                    />
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</merge>

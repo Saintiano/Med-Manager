@@ -1,20 +1,29 @@
 package com.example.saint.medmanager;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.saint.medmanager.create_doctor_hospital_profiles.Create_Doctor_Activity;
+import com.example.saint.medmanager.create_doctor_hospital_profiles.Create_Hospital_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,14 +31,38 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
 
 public class Edit_Profile_Activity extends AppCompatActivity {
+
+    private static final int REQUEST_CAMERA = 3;
+    private static final int SELECT_FILE = 2;
+    //DECLARE THE FIELDS
+
+
+
+    //FIREBASE AUTHENTICATION FIELDS
+    FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
+
+    //FIREBASE DATABASE FIELDS
+    DatabaseReference mUserDatabse;
+    StorageReference mStorageRef;
+
+    //IMAGE HOLD URI
+    Uri imageHoldUri = null;
+
+    //PROGRESS DIALOG
+    ProgressDialog mProgress;
+
 
     private static final int CHOOSE_IMAGE = 1;
 
@@ -39,38 +72,40 @@ public class Edit_Profile_Activity extends AppCompatActivity {
     private EditText mDescription;
     private EditText mEmail;
     private EditText mPhoneNumber;
+    private EditText mBlood_group;
+    private EditText mGenotype;
+
 
     private ProgressBar progressBar;
     private TextView pleaseWait;
 
     private Button saveUser;
 
-    private ImageView uploadPhoto;
-    Uri uriForProfilePhoto;
-    private String profileImageUrl;
 
-    FirebaseAuth mAuthentication;
+    private ImageView uploadPhoto;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit__profile_);
 
-        mAuthentication = FirebaseAuth.getInstance();
 
         mUsername = (EditText) findViewById(R.id.edit_username);
         mDisplayName = (EditText) findViewById(R.id.edit_display_name);
         mWork = (EditText) findViewById(R.id.edit_work);
-        mDescription = (EditText)findViewById(R.id.edit_description);
+        mDescription = (EditText) findViewById(R.id.edit_description);
         mEmail = (EditText) findViewById(R.id.edit_email);
         mPhoneNumber = (EditText) findViewById(R.id.edit_PhoneNumber);
+        mBlood_group = findViewById(R.id.edit_blood_group);
+        mGenotype = findViewById(R.id.edit_genotype);
 
         pleaseWait = (TextView) findViewById(R.id.please_wait_profile);
         progressBar = (ProgressBar) findViewById(R.id.progressBar_profile);
 
-        saveUser =(Button) findViewById(R.id.update_profile_button);
+        saveUser = (Button) findViewById(R.id.update_profile_button);
         uploadPhoto = (ImageView) findViewById(R.id.profile_photo);
-
 
 
         //hiding progress bar and please wait text field at start
@@ -78,220 +113,213 @@ public class Edit_Profile_Activity extends AppCompatActivity {
         pleaseWait.setVisibility(View.GONE);
 
 
+        //ASSIGN INSTANCE TO FIREBASE AUTH
+        mAuth = FirebaseAuth.getInstance();
 
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                //LOGIC CHECK USER
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null) {
+
+                    finish();
+                    Intent moveToHome = new Intent(Edit_Profile_Activity.this, Profile_Activity.class);
+                    moveToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(moveToHome);
+
+                }
+
+            }
+        };
+
+        //PROGRESS DIALOG
+        mProgress = new ProgressDialog(this);
+
+        //FIREBASE DATABASE INSTANCE
+        mUserDatabse = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        //ONCLICK SAVE PROFILE BTN
         saveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                saveUserInformtion();
+                //LOGIC FOR SAVING USER PROFILE
+                saveUserProfile();
 
             }
         });
 
-
+        //USER IMAGEVIEW ONCLICK LISTENER
         uploadPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //profile photo upload
-                showImageChooser();
+
+                //LOGIC FOR PROFILE PICTURE
+                profilePicSelection();
+
             }
         });
 
+
     }
 
-    //method to save user information firebase cloud storage
-    private void saveUserInformtion() {
+    private void saveUserProfile() {
 
-         String username = mUsername.getText().toString();
-         String displayName = mDisplayName.getText().toString();
-         String work = mWork.getText().toString();
-         String description = mDescription.getText().toString();
-         String email = mEmail.getText().toString();
-         String phoneNumber = mPhoneNumber.getText().toString();
+        final String username, description, fullname, work, email, phoneNumber, blood_group, genotype;
 
-        //checking if fields are empty
-        if (username.isEmpty()){
+        username = mUsername.getText().toString().trim();
+        description = mDescription.getText().toString().trim();
+        fullname = mDisplayName.getText().toString().trim();
+        work = mWork.getText().toString().trim();
+        email = mEmail.getText().toString().trim();
+        phoneNumber = mPhoneNumber.getText().toString().trim();
+        blood_group = mBlood_group.getText().toString().trim();
+        genotype = mGenotype.getText().toString().trim();
 
-            mUsername.setError("Username Required");
-            mUsername.requestFocus();
-            return;
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(fullname)) {
 
-        }
+            if (imageHoldUri != null) {
 
-        //checking if fields are empty
-        if (displayName.isEmpty()){
+                mProgress.setTitle("Saveing Profile");
+                mProgress.setMessage("Please wait....");
+                mProgress.show();
 
-            mDisplayName.setError("Full Name Required");
-            mDisplayName.requestFocus();
-            return;
+                StorageReference mChildStorage = mStorageRef.child("User_Profile").child(imageHoldUri.getLastPathSegment());
+                String profilePicUrl = imageHoldUri.getLastPathSegment();
 
-        }
+                mChildStorage.putFile(imageHoldUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-        //checking if fields are empty
-        if (work.isEmpty()){
+                        final Uri imageUrl = taskSnapshot.getDownloadUrl();
 
-            mWork.setError("Work Required");
-            mWork.requestFocus();
-            return;
+                        mUserDatabse.child("username").setValue(username);
+                        mUserDatabse.child("description").setValue(description);
+                        mUserDatabse.child("fullname").setValue(fullname);
+                        mUserDatabse.child("work").setValue(work);
+                        mUserDatabse.child("email").setValue(email);
+                        mUserDatabse.child("phonenumber").setValue(phoneNumber);
+                        mUserDatabse.child("blood_group").setValue(blood_group);
+                        mUserDatabse.child("genotype").setValue(genotype);
 
-        }
 
-        //checking if fields are empty
-        if (description.isEmpty()){
+                        mUserDatabse.child("userid").setValue(mAuth.getCurrentUser().getUid());
+                        mUserDatabse.child("imageurl").setValue(imageUrl.toString());
 
-            mDescription.setError("Username Required");
-            mDescription.requestFocus();
-            return;
+                        mProgress.dismiss();
 
-        }
+                        finish();
+                        Intent moveToHome = new Intent(Edit_Profile_Activity.this, Profile_Activity.class);
+                        moveToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(moveToHome);
 
-        //checking if fields are empty
-        if (email.isEmpty()){
-
-            mEmail.setError("Username Required");
-            mEmail.requestFocus();
-            return;
-
-        }
-
-        //checking if fields are empty
-        if (phoneNumber.isEmpty()){
-
-            mPhoneNumber.setError("Username Required");
-            mPhoneNumber.requestFocus();
-            return;
-
-        }
-
-        FirebaseUser user = mAuthentication.getCurrentUser();
-
-        if (user !=null && profileImageUrl !=null){
-
-            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayName)
-                    .setDisplayName(description)
-                    .setDisplayName(username)
-                    .setDisplayName(work)
-                    .setDisplayName(email)
-                    .setDisplayName(phoneNumber)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
-                    .build();
-
-            user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-
-                    if(task.isSuccessful()){
-
-                        Toast.makeText(Edit_Profile_Activity.this, "update successful", Toast.LENGTH_SHORT).show();
 
                     }
+                });
+            } else {
 
-                }
-            });
+                Toast.makeText(Edit_Profile_Activity.this, "Please select the profile pic", Toast.LENGTH_LONG).show();
+
+            }
+
+        } else {
+
+            Toast.makeText(Edit_Profile_Activity.this, "Please enter username and status", Toast.LENGTH_LONG).show();
 
         }
 
+    }
+
+    private void profilePicSelection() {
+
+
+        //DISPLAY DIALOG TO CHOOSE CAMERA OR GALLERY
+
+        final CharSequence[] items = {"Take Photo", "Choose from Library",
+                "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(Edit_Profile_Activity.this);
+        builder.setTitle("Add Photo!");
+
+        //SET ITEMS AND THERE LISTENERS
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (items[item].equals("Take Photo")) {
+                    cameraIntent();
+                } else if (items[item].equals("Choose from Library")) {
+                    galleryIntent();
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
 
     }
 
+    private void cameraIntent() {
 
-    //method to get selected image
+        //CHOOSE CAMERA
+        Log.d("gola", "entered here");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    private void galleryIntent() {
+
+        //CHOOSE IMAGE FROM GALLERY
+        Log.d("gola", "entered here");
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, SELECT_FILE);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null  && data.getData() != null){
 
-            //storing the image inside the uri object
-            uriForProfilePhoto = data.getData();
+        //SAVE URI FROM GALLERY
+        if (requestCode == SELECT_FILE && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
 
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriForProfilePhoto);
+            CropImage.activity(imageUri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1, 1)
+                    .start(this);
 
-                //using bitmap to set profile photo
-                uploadPhoto.setImageBitmap(bitmap);
+        } else if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK) {
+            //SAVE URI FROM CAMERA
 
-                //uploading to google firebase storage
-                uploadImageToFirebaseStorage();
+            Uri imageUri = data.getData();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            CropImage.activity(imageUri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1, 1)
+                    .start(this);
+
+        }
+
+
+        //image crop library code
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                imageHoldUri = result.getUri();
+
+                uploadPhoto.setImageURI(imageHoldUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
             }
-
         }
 
     }
 
-    //method to upload image to firebase storage
-    private void uploadImageToFirebaseStorage() {
 
-        //Showprogress bar and please wait text field at start
-        progressBar.setVisibility(View.VISIBLE);
-        pleaseWait.setVisibility(View.VISIBLE);
-
-        StorageReference profileImageReference =
-                FirebaseStorage.getInstance().getReference("profile_photo/" + System.currentTimeMillis() + ".jpg ");
-
-        if (uriForProfilePhoto != null){
-
-            profileImageReference.putFile(uriForProfilePhoto).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    //if it is successful
-                    //hiding progress bar and please wait text field at start
-                    progressBar.setVisibility(View.GONE);
-                    pleaseWait.setVisibility(View.GONE);
-
-                    //storing the download url in a variable used to store the user information
-                    profileImageUrl = taskSnapshot.getDownloadUrl().toString();
-
-                    Toast.makeText(Edit_Profile_Activity.this, "Image Uploaded Successfully", Toast.LENGTH_SHORT);
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                    //if it fails
-                    //hiding progress bar and please wait text field at start
-                    progressBar.setVisibility(View.GONE);
-                    pleaseWait.setVisibility(View.GONE);
-
-                    Toast.makeText(Edit_Profile_Activity.this, "Image Upload failed", Toast.LENGTH_SHORT);
-
-                }
-            });
-
-        }
-
-    }
-
-    //a method for our image chooser
-    private void showImageChooser(){
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
-
-    }
-
-    private void loadUserInformation(){
-
-
-
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-
-    }
 }

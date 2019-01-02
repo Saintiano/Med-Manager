@@ -17,40 +17,40 @@
     <string name="home">Home</string>
     <string name="notification">Notification</string>
     <string name="medications">Medications</string>
-    
+
     <array name="days">
 
-        <item>Day One</item>
-        <item>Day Two</item>
-        <item>Day Three</item>
-        <item>Day Four</item>
-        <item>Day Five</item>
-        <item>Day Six</item>
-        <item>Day Seven</item>
-        <item>Day Eight</item>
-        <item>Day Nine</item>
-        <item>Day Ten</item>
-        <item>Day Eleven</item>
-        <item>Day Twelve</item>
-        <item>Day Thirteen</item>
-        <item>Day Fourteen</item>
-        <item>Day Fifteen</item>
-        <item>Day Sixteen</item>
-        <item>Day Seventeen</item>
-        <item>Day Eighteen</item>
-        <item>Day Nineteen</item>
-        <item>Day Twenty</item>
-        <item>Day Twenty One</item>
-        <item>Day Twenty Two</item>
-        <item>Day Twenty Three</item>
-        <item>Day Twenty Four</item>
-        <item>Day Twenty Five</item>
-        <item>Day Twenty Six</item>
-        <item>Day Twenty Seven</item>
-        <item>Day Twenty Eight</item>
-        <item>Day Twenty Nine</item>
-        <item>Day Thirty</item>
-        <item>Day Thirty One</item>
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+        <item>Nine</item>
+        <item>Ten</item>
+        <item>Eleven</item>
+        <item>Twelve</item>
+        <item>Thirteen</item>
+        <item>Fourteen</item>
+        <item>Fifteen</item>
+        <item>Sixteen</item>
+        <item>Seventeen</item>
+        <item>Eighteen</item>
+        <item>Nineteen</item>
+        <item>Twenty</item>
+        <item>Twenty One</item>
+        <item>Twenty Two</item>
+        <item>Twenty Three</item>
+        <item>Twenty Four</item>
+        <item>Twenty Five</item>
+        <item>Twenty Six</item>
+        <item>Twenty Seven</item>
+        <item>Twenty Eight</item>
+        <item>Twenty Nine</item>
+        <item>Thirty</item>
+        <item>Thirty One</item>
 
     </array>
 
@@ -69,6 +69,84 @@
         <item>October</item>
         <item>November</item>
         <item>December</item>
+
+    </array>
+
+    <array name="dates">
+
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
+        <item>29th</item>
+        <item>30th</item>
+        <item>31st</item>
+
+    </array>
+
+    <array name="states">
+
+        <item>Abia</item>
+        <item>Abuja</item>
+        <item>Adamawa</item>
+        <item>Akwa Ibom</item>
+        <item>Anambra</item>
+        <item>Bauchi</item>
+        <item>Bayelsa</item>
+        <item>Benue</item>
+        <item>Borno</item>
+        <item>Cross River</item>
+        <item>Delta</item>
+        <item>Ebonyi</item>
+        <item>Enugu</item>
+        <item>Edo</item>
+        <item>Ekiti</item>
+        <item>Gombe</item>
+        <item>Imo</item>
+        <item>Jigawa</item>
+        <item>Kaduna</item>
+        <item>Kano</item>
+        <item>Katsina</item>
+        <item>Kebbi</item>
+        <item>Kogi</item>
+        <item>Kwara</item>
+        <item>Lagos</item>
+        <item>Nasarawa</item>
+        <item>Niger</item>
+        <item>Ogun</item>
+        <item>Ondo</item>
+        <item>Osun</item>
+        <item>Oyo</item>
+        <item>Plateau</item>
+        <item>Rivers</item>
+        <item>Sokoto</item>
+        <item>Taraba</item>
+        <item>Yobe</item>
+        <item>Zamfara</item>
 
     </array>
 

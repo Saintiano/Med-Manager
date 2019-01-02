@@ -3,9 +3,18 @@ package com.example.saint.medmanager;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.saint.medmanager.firebase_model.AddMedication;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class Report_Activity extends AppCompatActivity {
@@ -14,6 +23,12 @@ public class Report_Activity extends AppCompatActivity {
 
     private Context mContext = Report_Activity.this;
 
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +36,20 @@ public class Report_Activity extends AppCompatActivity {
 
 
         setUpBottomNavigationView();
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
 
 
     /**

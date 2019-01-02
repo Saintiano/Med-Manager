@@ -24,20 +24,13 @@
         <!-- Middle Section -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="620dp"
             android:id="@+id/relativelayout2"
             android:layout_below="@id/relativelayout1">
 
-            <include layout="@layout/layout_center_view_pager"/>
+            <include layout="@layout/layout_report_center"/>
 
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Report Activity"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
 
         <!-- Bottom Navigation Bar -->
         <include layout="@layout/layout_bottom_navigation_view"/>

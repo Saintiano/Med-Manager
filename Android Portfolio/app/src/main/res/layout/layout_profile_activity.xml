@@ -39,12 +39,25 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/profile_tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_tv_name"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif"
+                    android:text="username"
+                    android:textAllCaps="true"
+                    android:textColor="@color/address"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/profile_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imgUser"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15sp"
+
                     android:fontFamily="sans-serif-light"
                     android:text="Okonkwo Clovis"
                     android:textColor="@color/white"
@@ -52,10 +65,10 @@
 
 
                 <TextView
-                    android:id="@+id/tv_address"
+                    android:id="@+id/profile_tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_name"
+                    android:layout_below="@+id/profile_tv_name"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="sans-serif"
                     android:text="Lagos, Nigeria"
@@ -111,7 +124,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/blood_group"
+                            android:id="@+id/profile_blood_group"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -137,6 +150,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/profile_genotype"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -145,7 +159,7 @@
                             android:textSize="25sp" />
 
                         <TextView
-                            android:id="@+id/genotype"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -176,7 +190,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/drug_taken"
+                            android:id="@+id/profile_drug_taken"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -202,7 +216,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/drugs_on"
+                            android:id="@+id/profile_drugs_on"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -253,6 +267,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/profile_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -282,6 +297,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/profile_phone_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -311,6 +327,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/profile_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -340,7 +357,7 @@
                             android:textSize="13sp" />
 
                         <TextView
-                            android:id="@+id/work"
+                            android:id="@+id/profile_work"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"

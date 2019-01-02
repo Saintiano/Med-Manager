@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:padding="20dp"
-    android:background="#305f64"
-    android:layout_height="match_parent">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,189 +10,387 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#f2f5f5">
 
-            <!-- Here you can put your logo or brand name -->
-
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="5dp"
-                android:src="@drawable/med_center_logo"/>
-
-
-            <EditText
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="20"
-                android:background="@android:color/transparent"
-                android:drawablePadding="12dp"
-                android:padding="8dp"
-                android:id="@+id/drug_name"
-                android:hint="Drug Name"
-                android:textColorHint="#fff"
-                android:maxLines="1"
-                android:drawableLeft="@drawable/drugs_small"
-                android:layout_marginTop="20dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#f9d7db" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="200"
-                android:drawablePadding="12dp"
-                android:padding="8dp"
-                android:hint="Drug Description"
-                android:textColorHint="#fff"
-                android:maxLines="1"
-                android:id="@+id/drug_description"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="4dp"
-                android:drawableLeft="@drawable/tablets"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#f9d7db" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="20"
-                android:background="@android:color/transparent"
-                android:drawablePadding="12dp"
-                android:padding="8dp"
-                android:id="@+id/drug_interval"
-                android:hint="Interval/Frequency"
-                android:textColorHint="#fff"
-                android:maxLines="1"
-                android:drawableLeft="@drawable/pulse"
-                android:layout_marginTop="0dp"/>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#f9d7db" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/weekly_calendar"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="Day"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-                <Spinner
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:entries="@array/days"
-                    android:id="@+id/spinner_day">
-
-                </Spinner>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/wall_calendar"
-                    android:layout_margin="4dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:textColor="@color/white"
-                    android:text="Month"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:entries="@array/month"
-                    android:id="@+id/spinner_month">
-
-                </Spinner>
-
-
-
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
-            <Button
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_login"
-                android:text="Set Reminder"
-                android:textColor="#f16f7d"
-                android:textAllCaps="false"
-                android:layout_marginStart="95dp"
-                android:padding="16dp"
+                app:cardElevation="10dp"
+                android:id="@+id/cardview_arrival"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:clickable="true"
-                android:id="@+id/set_reminder"
-                style="@style/Base.TextAppearance.AppCompat.Body1"
-                android:layout_marginTop="54dp"
-                android:textSize="18sp"/>
+                app:cardCornerRadius="10dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_primary"
+                        android:text="Enter Medication Details"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f9d7db" />
+
+                    <EditText
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="20"
+                        android:drawablePadding="12dp"
+                        android:id="@+id/drug_name"
+                        android:textSize="15sp"
+                        android:hint="Enter Drug Name"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/drugs_small"
+                        android:layout_marginTop="10dp"/>
+
+
+                    <EditText
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="20"
+                        android:textSize="15sp"
+                        android:drawablePadding="12dp"
+                        android:padding="8dp"
+                        android:hint="Enter Drug Description"
+                        android:maxLines="1"
+                        android:id="@+id/drug_description"
+                        android:background="@android:color/transparent"
+                        android:layout_marginTop="4dp"
+                        android:drawableLeft="@drawable/tablets"/>
+
+
+
+                    <EditText
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="20"
+                        android:background="@android:color/transparent"
+                        android:drawablePadding="12dp"
+                        android:padding="8dp"
+                        android:textSize="15sp"
+                        android:id="@+id/drug_interval"
+                        android:hint="Enter Drug Intake Interval/Frequency"
+                        android:maxLines="1"
+                        android:drawableLeft="@drawable/pulse"
+                        android:layout_marginBottom="10dp"/>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f9d7db" />
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/weekly_calendar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:text="Day"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_day"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:entries="@array/days">
+
+                        </Spinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/wall_calendar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:text="Month"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:entries="@array/month">
+
+                        </Spinner>
+
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_login"
+                        android:text="Set Reminder"
+                        android:textColor="#03A9F4"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="95dp"
+                        android:padding="16dp"
+                        android:clickable="true"
+                        android:id="@+id/set_reminder"
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:textSize="18sp"/>
+
+
+
+
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="100dp"
+                            android:id="@+id/progressBar_drugs" />
+
+                        <TextView
+                            android:id="@+id/please_wait_drugs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:text="Please Wait"
+                            android:textSize="15sp"
+                            android:layout_marginTop="12dp"
+                            />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="10dp"
+                android:clickable="true"
+                app:cardCornerRadius="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/create_scan_card">
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:clickable="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/scan_image_card"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@drawable/image_card_borderline"
+                        android:padding="10dp"
+                        android:src="@drawable/scan_examination" />
+
+                    <TextView
+                        android:id="@+id/scan_text_description"
+                        android:layout_toRightOf="@id/scan_image_card"
+                        android:padding="10dp"
+                        android:textSize="10sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Scan your skin lets help you identify the skin disease "/>
+
+
+                    <ImageView
+                        android:layout_toRightOf="@id/scan_text_description"
+                        android:clickable="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/fake_drugs_report_image_card"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@drawable/image_card_borderline"
+                        android:padding="10dp"
+                        android:src="@drawable/fake_pills" />
+
+                    <TextView
+                        android:id="@+id/fake_drug_text_description"
+                        android:layout_toRightOf="@id/fake_drugs_report_image_card"
+                        android:padding="10dp"
+                        android:textSize="10sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Report fake drugs and harmful drugs to the authorities"/>
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <!-- 2nd row -->
 
             <LinearLayout
+
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="110dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
 
-                <ProgressBar
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="100dp"
-                    android:id="@+id/progressBar_drugs" />
 
-                <TextView
-                    android:id="@+id/please_wait_drugs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:text="Please Wait"
-                    android:textSize="15sp"
-                    android:layout_marginTop="12dp"
-                    />
+                <android.support.v7.widget.CardView
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="10dp"
+                    android:clickable="true"
+                    android:layout_width="190dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/create_doctor_card"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:id="@+id/creat_doctor_image_card"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/image_card_borderline"
+                            android:padding="10dp"
+                            android:src="@drawable/doctor_card" />
+
+                        <TextView
+                            android:layout_toRightOf="@id/creat_doctor_image_card"
+                            android:padding="10dp"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Create Doctor Profile"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    app:cardElevation="10dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="10dp"
+                    android:layout_width="190dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/create_hospital_card">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:id="@+id/creat_hospital_image_card"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/image_card_borderline"
+                            android:padding="10dp"
+                            android:src="@drawable/hospital_card" />
+
+
+                        <TextView
+                            android:layout_toRightOf="@id/creat_hospital_image_card"
+                            android:padding="10dp"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Create Hospital Profile"/>
+
+                    </RelativeLayout>
+
+
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
+
+
+
 
 
         </LinearLayout>
 
 
-
     </ScrollView>
 
-</RelativeLayout>
+
+
+</merge>

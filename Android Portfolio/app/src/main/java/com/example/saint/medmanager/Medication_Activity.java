@@ -1,31 +1,31 @@
 package com.example.saint.medmanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.saint.medmanager.create_doctor_hospital_profiles.Create_Doctor_Activity;
+import com.example.saint.medmanager.create_doctor_hospital_profiles.Create_Hospital_Activity;
+import com.example.saint.medmanager.details_activities.Doctors_Profile_Details;
+import com.example.saint.medmanager.details_activities.Fake_Drugs_Activity;
+import com.example.saint.medmanager.details_activities.Scanner_Activity;
 import com.example.saint.medmanager.firebase_model.AddMedication;
-import com.example.saint.medmanager.firebase_model.MedicaticationList;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Medication_Activity extends AppCompatActivity {
 
@@ -34,6 +34,7 @@ public class Medication_Activity extends AppCompatActivity {
     EditText editTextFrequency;
 
     Button setReminderBtn;
+    Button doctors_Profile;
 
     Spinner spinnerDay;
     Spinner spinnerMonth;
@@ -43,9 +44,13 @@ public class Medication_Activity extends AppCompatActivity {
 
     DatabaseReference databaseMedication;
 
-    ListView listViewMedication;
+    private CardView create_doctor_profile;
+    private CardView create_hospital_profile;
 
-    List<AddMedication> addMedicationList;
+    private ImageView scanImage;
+    private ImageView fakeDrugs;
+
+
 
     private static final int ACTIVITY_NUM = 1;
 
@@ -55,6 +60,12 @@ public class Medication_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_);
+
+        create_doctor_profile = (CardView) findViewById(R.id.create_doctor_card);
+        create_hospital_profile = (CardView) findViewById(R.id.create_hospital_card);
+
+        scanImage = (ImageView) findViewById(R.id.scan_image_card);
+        fakeDrugs = (ImageView) findViewById(R.id.fake_drugs_report_image_card);
 
 
         databaseMedication = FirebaseDatabase.getInstance().getReference("medications");
@@ -72,14 +83,14 @@ public class Medication_Activity extends AppCompatActivity {
         spinnerMonth = (Spinner) findViewById(R.id.spinner_month);
 
 
-        listViewMedication = (ListView) findViewById(R.id.medication_listView);
-
-        addMedicationList = new ArrayList<>();
 
 
         //hiding progress bar and please wait text field at start
         progressBar.setVisibility(View.GONE);
         pleaseWait.setVisibility(View.GONE);
+
+
+
 
 
 
@@ -102,6 +113,49 @@ public class Medication_Activity extends AppCompatActivity {
 
 
         setUpBottomNavigationView();
+
+
+
+        fakeDrugs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Medication_Activity.this, Fake_Drugs_Activity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        scanImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Medication_Activity.this, Scanner_Activity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        create_doctor_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Medication_Activity.this, Create_Doctor_Activity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+        create_hospital_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Medication_Activity.this, Create_Hospital_Activity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -130,6 +184,10 @@ public class Medication_Activity extends AppCompatActivity {
 
             databaseMedication.child(id).setValue(medication);
 
+            editTextDrug.setText("");
+            editTextDescription.setText("");
+            editTextFrequency.setText("");
+
             Toast.makeText(Medication_Activity.this, "Medication Added", Toast.LENGTH_LONG).show();;
 
         }else {
@@ -143,39 +201,6 @@ public class Medication_Activity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        databaseMedication.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                addMedicationList.clear();
-
-                for (DataSnapshot medicationDataSnapshot : dataSnapshot.getChildren()){
-
-                    AddMedication addMedication = medicationDataSnapshot.getValue(AddMedication.class);
-
-                    addMedicationList.add(addMedication);
-
-                }
-
-                MedicaticationList medicaticationListAdapter = new MedicaticationList(Medication_Activity.this, addMedicationList);
-
-                listViewMedication.setAdapter(medicaticationListAdapter);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-
-
-            }
-        });
-
-    }
 
 
     /**

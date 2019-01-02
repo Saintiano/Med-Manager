@@ -24,7 +24,7 @@
         <!-- Middle Section -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="620dp"
             android:id="@+id/relativelayout2"
             android:layout_below="@id/relativelayout1">
 

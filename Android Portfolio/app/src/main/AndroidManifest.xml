@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.saint.medmanager">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
 
     <application
         android:allowBackup="true"
@@ -21,13 +27,22 @@
         </activity>
         <activity android:name=".Login_Activity" />
         <activity android:name=".Profile_Activity" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".Edit_Profile_Activity" />
         <activity android:name=".Sign_Up_Activity" />
         <activity android:name=".Home_Activity" />
         <activity android:name=".PassWord_Recovery_Activity" />
         <activity android:name=".Report_Activity" />
         <activity android:name=".Medication_Activity" />
-        <activity android:name=".Notification_Activity"></activity>
+        <activity android:name=".Notification_Activity" />
+        <activity android:name=".details_activities.Doctors_Profile_Details" />
+        <activity android:name=".details_activities.Hospital_Ambulance_Profile_Activity" />
+        <activity android:name=".details_activities.Doctors_Patients_Review_Activity" />
+        <activity android:name=".details_activities.Hospital_Ambulance_Patients_Review_Activity" />
+        <activity android:name=".create_doctor_hospital_profiles.Create_Hospital_Activity" />
+        <activity android:name=".create_doctor_hospital_profiles.Create_Doctor_Activity" />
+        <activity android:name=".details_activities.Scanner_Activity" />
+        <activity android:name=".details_activities.Fake_Drugs_Activity"></activity>
     </application>
 
 </manifest>

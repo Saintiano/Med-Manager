@@ -9,11 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.saint.medmanager.fragments.Doctor_Fragments;
-import com.example.saint.medmanager.fragments.Home_Fragments;
+import com.example.saint.medmanager.fragments.Drug_Fragments;
 import com.example.saint.medmanager.fragments.Review_Fragments;
 import com.example.saint.medmanager.fragments.SectionPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -137,7 +135,7 @@ public class Home_Activity extends AppCompatActivity {
 
         //adding fragments with the addfragment method we created in SectionPagerAdapter class
         adapter.addFragments(new Doctor_Fragments()); //index 0
-        adapter.addFragments(new Home_Fragments());   //index 1
+        adapter.addFragments(new Drug_Fragments());   //index 1
         adapter.addFragments(new Review_Fragments() );   //index 2
 
         //declaring the view pager object
